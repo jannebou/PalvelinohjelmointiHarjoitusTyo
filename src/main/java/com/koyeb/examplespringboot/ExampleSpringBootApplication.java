@@ -14,6 +14,6 @@ public class ExampleSpringBootApplication {
 
     @GetMapping("/")
     public String hello() {
-      return String.format("Hello world!");
+      return "<h1>hello world</h1>";
     }
 }
