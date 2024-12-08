@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tapahtumat</title>
+</head>
+<body>
+    <h1>Tapahtumat</h1>
+    <ul>
+        <li th:each="event : ${events}">
+            <a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.title}"></a>
+        </li>
+    </ul>
+    <a href="/events/new">Lisää tapahtuma</a></br></br>
+    <a href="/">Takaisin</a>
+</body>
+</html>
