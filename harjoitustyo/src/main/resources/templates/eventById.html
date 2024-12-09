@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${event.title}">Tapahtuman tiedot</title>
+    <link rel="stylesheet" type="text/css" href="/events.css" />
+    <link rel="stylesheet" type="text/css" href="/navbar.css" />
+</head>
+    
+<body>
+    <div class="header">
+        <h1>Tapahtuman Hallintajärjestelmä</h1>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Etusivu</a></li>
+            <li><a th:href="@{/events}">Tapahtumat</a></li>
+            <li><a th:href="@{/categories}">Kategoriat</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <h1 th:text="${event.title}">Tapahtuma</h1>
+        <h2>kuvaus</h2>
+        <p th:text="${event.description}">Tiedot</span></p>
+        <h2>Päivä ja aika</h2>
+        <p id="event-date" th:text="${event.eventDateTime}">Päivä</span></p>
+        <h2>Kategoria</h2>
+        <p th:text="${event.category.name}">nimi</span></p>
+        <a th:href="@{/events}">Takaisin</a>
+    </div>
+
+</body>
+
+<div class="footer">
+    <p>Palvelinohjelmoinnin harjoitustyö 2024</p>
+</div>
+
+<script>
+    document.getElementById("event-date").textContent = new Date(document.getElementById("event-date").textContent).toLocaleString();
+</script>
+
+</html>

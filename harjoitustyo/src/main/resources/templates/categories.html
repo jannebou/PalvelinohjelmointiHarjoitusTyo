@@ -2,25 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Categories</title>
+    <link rel="stylesheet" type="text/css" href="/events.css" />
+    <link rel="stylesheet" type="text/css" href="/navbar.css" />
 </head>
 <body>
-    <h1>Kategoriat</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Kategoria</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="category : ${categories}">
-                <td th:text="${category.id}">{category.id}</td>
-                <td th:text="${category.name}">{category.name}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <br>
-    <a href="/">Takaisin</a>
+    <div class="header">
+        <h1>Tapahtuman Hallintajärjestelmä</h1>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Etusivu</a></li>
+            <li><a th:href="@{/events}">Tapahtumat</a></li>
+            <li><a th:href="@{/categories}">Kategoriat</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <h1>Kategoriat</h1>
+
+        <a href="/categories/new">Lisää kategoria</a></br></br>
+        <a href="/">Takaisin</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nimi</th>
+                    <th>Poista</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="category : ${categories}">
+                    <td><a th:text="${category.name}">kategoria</a></td>
+                    <td><a th:action="@{/categories/delete/{id}(id=${category.id})}" th:href="@{/categories/delete/{id}(id=${category.id})}">Poista</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="footer">
+        <p>Palvelinohjelmoinnin harjoitustyö 2024</p>
+    </div>
+
 </body>
 </html>

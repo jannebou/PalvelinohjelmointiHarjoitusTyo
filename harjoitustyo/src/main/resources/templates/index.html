@@ -2,16 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Tapahtuman Hallinta</title>
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <link rel="stylesheet" type="text/css" href="/navbar.css" />
 </head>
 <body>
-    <div class="container mt-4">
-        <h1>Tapahtuman Hallinta</h1>
-        <h2>Palvelinohjelmoinnin harjoitustyö</h2>
+    
+    <div class="header">
+        <h1>Tapahtuman Hallintajärjestelmä</h1>
+    </div>
+    <div class="navbar">
         <ul>
-            <li><a th:href="@{/events}">Katso kaikki tapahtumat</a></li>
-            <li><a th:href="@{/events/new}">Lisää uusi tapahtuma</a></li>
-            <li><a th:href="@{/categories}">Näytä tapahtuma kategoriat</a></li>
+            <li><a th:href="@{/}">Etusivu</a></li>
+            <li><a th:href="@{/events}">Tapahtumat</a></li>
+            <li><a th:href="@{/categories}">Kategoriat</a></li>
         </ul>
     </div>
+
+
+    <div class="body">
+        <h1>Palvelinohjelmoinnin harjoitustyö</h1>
+        <p th:field="${eventCount}">Tapahtumia tulossa tällä hetkellä: <span th:text="${eventCount}"></span></p>
+        <p>
+            Pääset selaamaan tapahtumia ja kategorioita ilman kirjautumista. <br>
+            Tapahtumien ja kategorioiden lisääminen, muokkaaminen, poistaminen vaatii kirjautumisen.
+            <br><br>
+            käyttäjänimi: Palvelin<br
+            >salasana: Ohjelmointi<br>
+        </p>
+        <div class="innerBody">
+            <h2>Ominaisuudet:</h2>
+                <h3>Tapahtumat</h3>
+                <hbox class="hbox">
+                    <p>Lisää tapahtuma</p>
+                    <p>Muokkaa lisättyä tapahtumaa</p>
+                    <p>Poista valittu tapahtuma</p>
+                </hbox>
+                <h3>Kategoriat</h3>
+                <hbox class="hbox">
+                    <p>Lisää uusi kategoria</p>
+                    <p>Poista valittu kategoria</p>
+                </hbox>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Palvelinohjelmoinnin harjoitustyö 2024</p>
+    </div>
+
 </body>
 </html>

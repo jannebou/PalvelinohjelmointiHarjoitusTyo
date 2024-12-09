@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Uusi kategoria</title>
+    <link rel="stylesheet" type="text/css" href="/new.css" />
+    <link rel="stylesheet" type="text/css" href="/navbar.css" />
+
+</head>
+<body>
+    <div class="header">
+        <h1>Tapahtuman Hallintajärjestelmä</h1>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Etusivu</a></li>
+            <li><a th:href="@{/events}">Tapahtumat</a></li>
+            <li><a th:href="@{/categories}">Kategoriat</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+        <h1>Uusi kategoria</h1>
+    
+        <form th:action="@{/categories/new}" method="post" th:object="${category}">
+            <label for="name">kategorian nimi:</label><br>
+            <input type="text" id="name" th:field="*{name}" required/>
+    
+            <button type="submit">Tallenna kategoria</button>
+            <a href="/categories">Takaisin</a>
+        </form>
+    
+        <br>
+    </div>
+</body>
+
+<div class="footer">
+    <p>Palvelinohjelmoinnin harjoitustyö 2024</p>
+</div>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tapahtumat</title>
+    <link rel="stylesheet" type="text/css" href="/events.css" />
+    <link rel="stylesheet" type="text/css" href="/navbar.css" />
+</head>
+<body>
+    <div class="header">
+        <h1>Tapahtuman Hallintajärjestelmä</h1>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Etusivu</a></li>
+            <li><a th:href="@{/events}">Tapahtumat</a></li>
+            <li><a th:href="@{/categories}">Kategoriat</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+
+        <h1>Tapahtumat</h1>
+            <a href="/events/new">Lisää tapahtuma</a></br></br>
+            <a href="/">Takaisin</a>
+     
+        <table class="info">
+            <thead>
+                <tr>
+                    <th class="small">Lisätiedot</th>
+                    <th class="large">Tapahtuman nimi</th>
+                    <th class="small">Muokkaa</th>
+                    <th class="small">Poista</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="event : ${events}">
+                    <td class="small">
+                        <a class="button" th:href="@{/events/{id}(id=${event.id})}">Lisätiedot</a>
+                    </td>
+                    <td class="nimi" th:text="${event.title}">Tapahtuma nimi</td>
+                    <td class="small">
+                        <a class="button" th:href="@{/events/edit/{id}(id=${event.id})}">Muokkaa</a>
+                    </td>
+                    <td class="small">
+                        <a class="button" th:href="@{/events/delete/{id}(id=${event.id})}">Poista</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="footer">
+        <p>Palvelinohjelmoinnin harjoitustyö 2024</p>
+    </div>
+</body>
+</html>

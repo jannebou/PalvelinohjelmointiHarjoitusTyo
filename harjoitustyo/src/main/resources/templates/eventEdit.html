@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Muokkaa tapahtumaa</title>
+    <link rel="stylesheet" type="text/css" href="/new.css" />
+    <link rel="stylesheet" type="text/css" href="/navbar.css" />
+</head>
+<body>
+    <div class="header">
+        <h1>Tapahtuman Hallintajärjestelmä</h1>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a th:href="@{/}">Etusivu</a></li>
+            <li><a th:href="@{/events}">Tapahtumat</a></li>
+            <li><a th:href="@{/categories}">Kategoriat</a></li>
+        </ul>
+    </div>
+
+    <div class="body">
+
+        <h1>Muokkaa tapahtumaa</h1>
+    
+        <form th:action="@{/events/edit/{id}(id=${event.id})}" method="post" th:object="${event}">
+            <label for="title">Tapahtuman nimi:</label>
+            <input type="text" id="title" th:field="*{title}" required />
+    
+            <label for="description">Tapahtuman tiedot:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+    
+            <label for="eventDateTime">Päivä ja aika:</label>
+            <input id="eventDateTime" th:field="*{eventDateTime}" required />
+    
+            <label for="category">Kategoria:</label>
+            <select id="category" th:field="*{category.id}">
+                <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+            </select>
+            <br>
+            <button type="submit">Tallenna muutokset</button>
+            <a href="/events">Takaisin</a>
+        </form>
+    </div>
+</body>
+    <div class="footer">
+        <p>Palvelinohjelmoinnin harjoitustyö 2024</p>
+    </div>
+</html>
