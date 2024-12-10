@@ -68,6 +68,9 @@ public class EventController {
 
     @GetMapping("/events/new")
     public String showEventForm(Model model) {
+        if (categoryRepository.findAll().isEmpty()) {
+            return "redirect:/categories/new";
+        }
         model.addAttribute("event", new Event());
         model.addAttribute("categories", categoryRepository.findAll());
         return "newEvent";
