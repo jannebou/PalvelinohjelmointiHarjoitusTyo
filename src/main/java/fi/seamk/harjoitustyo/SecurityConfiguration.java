@@ -18,27 +18,31 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .authorizeHttpRequests(auth -> auth
+    http
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/h2-console/**").permitAll() // Salli pääsy H2-konsoliin ilman autentikointia
+            .requestMatchers("/events/new").authenticated()
+            .requestMatchers(
+                "/index.css", "/events.css", "/new.css", "/navbar.css", "/", "/events", "/categories", "/events/{id}").permitAll()
+            .anyRequest().authenticated()
+        )
+        .csrf(csrf -> csrf
+            .ignoringRequestMatchers("/h2-console/**") // Poista CSRF-suojaus H2-konsolista
+        )
+        .headers(headers -> headers
+            .frameOptions(frameOptions -> frameOptions
+                .sameOrigin() // Salli frame-URL-osoitteet H2-konsolille
+            )
+        )
+        .formLogin(form -> form
+            .permitAll()
+        )
+        .logout(logout -> logout
+            .permitAll()
+        );
+    return http.build();
+}
 
-                // let all events by id be accessed, but not evetnts new
-                
-                
-                .requestMatchers("/events/new").authenticated()
-                
-                .requestMatchers(
-                    "/index.css", "/events.css", "/new.css", "/navbar.css", "/", "/events", "/categories", "/events/{id}").permitAll()
-                    
-                .anyRequest().authenticated() 
-            )
-            .formLogin(form -> form
-                .permitAll() 
-            )
-            .logout(logout -> logout
-                .permitAll()
-            );
-        return http.build();
-    }
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
